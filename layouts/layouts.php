@@ -105,7 +105,16 @@ class layouts {
         <!-- Example row of columns -->
         <div class="row">
           <div class="col-md-8">
-<?php if($_SERVER['PHP_SELF'] == '/fol/signup.php'){$ObjForm->signup(); }else{$ObjForm->signin();}?>
+          <?php 
+          $currentPage = basename($_SERVER['PHP_SELF']);
+          if ($currentPage == 'signup.php' && method_exists($forms, 'signup_form')) {
+              $forms->signup_form();
+          } elseif (method_exists($forms, 'signin_form')) {
+              $forms->signin_form();
+          } else {
+              echo "<p>No form available.</p>";
+            }
+            ?>
           </div>
           <div class="col-md-4">
             <h2>Heading</h2>
@@ -113,9 +122,7 @@ class layouts {
             <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
           </div>
         </div>
-
         <hr>
-
       </div> <!-- /container -->
     <?php
     }
