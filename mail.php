@@ -4,9 +4,14 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
+//use Dotenv\Dotenv;
 
 //Load Composer's autoloader (created by composer, not included with PHPMailer)
 require 'plugins/PHPMailer/vendor/autoload.php';
+
+//Load Dotenv
+//$dotenv = Dotenv::createImmutable(__DIR__);
+//$dotenv->load();
 
 //Create an instance; passing `true` enables exceptions
 $mail = new PHPMailer(true);
