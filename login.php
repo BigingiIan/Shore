@@ -5,5 +5,5 @@ $ObjLayout->header($config);
 $ObjLayout->nav($config);
 $ObjLayout->banner($config);
 $ObjLayout->content($config);
-$ObjLayout->form_frame($config);
+$ObjLayout->form_frame($config, $ObjForms);
 $ObjLayout->footer($config);

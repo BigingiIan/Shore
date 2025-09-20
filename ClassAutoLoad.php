@@ -1,16 +1,17 @@
 <?php
 
-require_once 'config.php';
-$directories = array('Classes', 'Forms', 'Layouts');
+require 'config.php';
+
+$directories = array('Global', 'Forms', 'Layouts');
 
 spl_autoload_register(function ($class_name) use ($directories) {
-    foreach ($directories as $directory) {
-        if (file_exists($directory . '/' . $class_name . '.php')) {
-            include $directory . '/' . $class_name . '.php' ;
-            return;
+    foreach ($directories as $dir) {
+        if (file_exists($dir . '/' . $class_name . '.php')) {
+            include $dir . '/' . $class_name . '.php' ;
         }
     }
 });
 
-$ObjLayout = new Layouts();
-$ObjForms = new Forms();
+$ObjLayout = new layouts();
+$ObjForms = new forms();
+$ObjMailer = new mailer();
