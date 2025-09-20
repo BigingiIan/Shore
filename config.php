@@ -1,5 +1,10 @@
 <?php
 
+require __DIR__ . '/vendor/autoload.php';
+
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
 // Start session
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
@@ -24,9 +29,9 @@ $config['db_pass'] = '';
 $config['db_name'] = 'shore_industries';
 
 // Email configuration
-$config['mail_type'] = 'smtp';
-$config['smtp_host'] = 'smtp.gmail.com';
-$config['smtp_user'] = 'bigingiian@gmail.com';
-$config['smtp_pass'] = 'sheu ysga edcf sgwv';
-$config['smtp_port'] = 465;
-$config['smtp_secure'] = 'ssl';
+$config['mail_type'] = $_ENV['MAIL_TYPE'];
+$config['smtp_host'] = $_ENV['SMTP_HOST'];
+$config['smtp_user'] = $_ENV['SMTP_USER'];
+$config['smtp_pass'] = $_ENV['SMTP_PASSWORD'];
+$config['smtp_port'] = $_ENV['SMTP_PORT'];
+$config['smtp_secure'] = $_ENV['SMTP_SECURE'];

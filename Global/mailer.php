@@ -34,6 +34,10 @@ class mailer {
         $mail->send();
         echo 'Message has been sent';
         return true;
+
+        $mail->SMPTDebug = \PHPMailer\PHPMailer\SMTP::DEBUG_SERVER;
+        $mail->Debugoutput = 'html';
+        
     } catch (Exception $e) {
         echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
         return false;
