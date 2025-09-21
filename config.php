@@ -27,6 +27,7 @@ $config['db_host'] = 'localhost';
 $config['db_user'] = 'root';
 $config['db_pass'] = '';
 $config['db_name'] = 'shore_industries';
+$config['db_port'] = 3306;
 
 // Email configuration
 $config['mail_type'] = $_ENV['MAIL_TYPE'];

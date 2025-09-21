@@ -1,33 +1,35 @@
 <?php
-class database {
-    private $host;
-    private $user;
-    private $pass;
-    private $dbname;
-    public $conn;
+class Database {
+    private $connection;
+    private static $instance;
 
-    public function __construct($config) {
-        $this->host = $config['db_host'];
-        $this->user = $config['db_user'];
-        $this->pass = $config['db_pass'];
-        $this->dbname = $config['db_name'];
-        $this->connect();
-    }
+    private function __construct($config) {
+        if ($config['db_type'] === 'mysqli') {
+            $this->connection = new mysqli(
+                $config['db_host'], 
+                $config['db_user'], 
+                $config['db_pass'], 
+                $config['db_name'],
+                $config['db_port'] ?? 3306
+            );
 
-    private function connect() {
-        $this->conn = new mysqli($this->host, $this->user, $this->pass, $this->dbname);
-        if ($this->conn->connect_error) {
-            die("Connection failed: " . $this->conn->connect_error);
+        if ($this->connection->connect_error) {
+            die("Database connection failed: " . $this->connection->connect_error);
+        }
+        } else {
+            throw new Exception("Unsupported database type: " . $config['db_type']);
         }
     }
 
-    public function query($sql) {
-        return $this->conn->query($sql);
+    public static function getInstance($config){
+        if(!self::$instance){
+            self::$instance = new Database($config);
+        }
+        return self::$instance;
     }
 
-    public function __destruct() {
-        if ($this->conn) {
-            $this->conn->close();
-        }
+    public function getConnection(){
+        return $this->connection;
     }
+
 }
