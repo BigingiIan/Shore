@@ -176,7 +176,7 @@ class layouts {
             ?>
             </main>
             <footer class="container">
-                <p>&copy; Shore Industries</p>
+                <p>&copy; Shore Industries. All rights reserved.</p>
             </footer>
              
             <!-- Bootstrap core JavaScript
@@ -197,7 +197,7 @@ class layouts {
                 'use strict'
 
                 // Fetch all the forms we want to apply custom Bootstrap validation styles to
-                const forms = document.querySelectorAll('.needs-validation')
+                const forms = document.querySelectorAll('form[novalidate]')
 
                 // Loop over them and prevent submission
                 Array.from(forms).forEach(form => {
